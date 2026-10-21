@@ -79,9 +79,13 @@ dvc repro --force
 dvc push
 ```
 
-## 6. View results
+## 6. Run the docker image
 
-Open **http://127.0.0.1:5000** → **quadratic-regression** experiment. Each run shows params (`degree`, `data_size`, `seed`), metrics (`MSE`, `R2`), and the model artifact.
+```bash
+docker run --rm --network=host \
+    -e MLFLOW_TRACKING_URI=http://127.0.0.1:5000 \
+    ghcr.io/matas34/u1-train:sha-d28e3d4fea7109c45c05cf69b444babf631504d2
+```
 
 ## 7. Reproduce a historical run
 
@@ -90,7 +94,11 @@ Open **http://127.0.0.1:5000** → **quadratic-regression** experiment. Each run
 python src/reproduce.py
 ```
 
-## 8. Tear down
+## 8. View results
+
+Open **http://127.0.0.1:5000** → **quadratic-regression** experiment. Each run shows params (`degree`, `data_size`, `seed`), metrics (`MSE`, `R2`), and the model artifact.
+
+## 9. Tear down
 
 ```bash
 # Ctrl+C in the port-forward terminal
