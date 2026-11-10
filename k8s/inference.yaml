@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/matas/u2-api
+          image: ghcr.io/matas34/mlops_u-api:sha-91be14edee78bbbc314adf595118ea6467f7da22
           imagePullPolicy: IfNotPresent
           env:
             - name: MLFLOW_TRACKING_URI
