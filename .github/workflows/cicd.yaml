@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.14' }
       - run: pip install pytest
-      - run: cd src && pytest tests/ -v
+      - run: PYTHONPATH=src pytest src/tests/ -v
 
   train-and-gate:
     runs-on: ubuntu-latest
