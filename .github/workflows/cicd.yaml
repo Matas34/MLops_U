@@ -78,9 +78,9 @@ jobs:
           docker push $IMAGE_NAME_API:$TAG
           echo "IMAGE_TAG=$TAG" >> $GITHUB_ENV
 
-      - name: Update K8s Manifest
+      - name: Update K8s Manifests
         run: |
-          sed -i "s|image:.*u2-api:.*|image: ${IMAGE_NAME_API}:${IMAGE_TAG}|" k8s/inference.yaml
+          sed -i "s|image:.*|image: ${IMAGE_NAME_API}:${IMAGE_TAG}|" k8s/inference.yaml
 
           sed -i "s|image:.*|image: ${IMAGE_NAME_TRAIN}:${IMAGE_TAG}|" k8s/train-job.yaml
           
