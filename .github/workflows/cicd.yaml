@@ -44,7 +44,7 @@ jobs:
         uses: astral-sh/setup-uv@v5 
         
       - name: Run DVC Pipeline
-        run: dvc repro
+        run: uv run dvc repro
 
   build-push:
     runs-on: ubuntu-latest
