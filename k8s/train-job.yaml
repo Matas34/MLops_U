@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: train
-          image: ghcr.io/matas/u1:sha-08531e5
+          image: ghcr.io/matas34/mlops_u-train:sha-51faa5e360d4f12167acfbe2a6552ed5f33606db
           command: ["sh", "-c", "python src/prepare.py && python src/hpo.py && python src/train.py && python src/evaluate.py"]
           envFrom:
             - configMapRef: { name: train-config }
