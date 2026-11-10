@@ -5,56 +5,89 @@ stages:
     deps:
     - path: src/prepare.py
       hash: md5
-      md5: 2484a58fd1e26f350fe49bad4af3849e
-      size: 462
+      md5: b562998d44590067416c68a01f1a379d
+      size: 447
     params:
       params.yaml:
-        data_size: 50
-        degree: 4
+        alpha: 0.001
+        data_size: 1500
+        degree: 2
+        epochs: 30
+        hidden: 50
+        lr: 0.0001
         seed: 43
     outs:
     - path: data/raw/data.csv
       hash: md5
-      md5: 33f444aece53cd50dd4f3dbdcba7bd39
-      size: 1838
+      md5: 157d23b7c53167859abb1b43afe5861e
+      size: 55967
   train:
     cmd: python src/train.py
     deps:
     - path: data/raw/data.csv
       hash: md5
-      md5: 33f444aece53cd50dd4f3dbdcba7bd39
-      size: 1838
+      md5: 157d23b7c53167859abb1b43afe5861e
+      size: 55967
     - path: src/train.py
       hash: md5
-      md5: 5c8ec42286656be28dcaffc45732a070
-      size: 1030
+      md5: 1789307632d0f8c610377b173be46896
+      size: 2814
     params:
-      params.yaml:
-        data_size: 50
-        degree: 4
+      best_params.yaml:
+        alpha: 0.0021401837661112456
+        data_size: 1500
+        degree: 2
+        epochs: 56
+        hidden: 44
+        lr: 0.0052272705892251374
         seed: 43
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 3151f31373f7e519eaad2fa4f0962ca2
-      size: 703
+      md5: 649904d8851f9742bd6674e96e53ffc8
+      size: 77201
     - path: models/run_id.txt
       hash: md5
-      md5: b6036530878c1c7cf28b20fa73d2cc4f
+      md5: 5cdc73704dc7f9d15a5805987852c750
       size: 32
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: models/model.pkl
       hash: md5
-      md5: 3151f31373f7e519eaad2fa4f0962ca2
-      size: 703
+      md5: 649904d8851f9742bd6674e96e53ffc8
+      size: 77201
     - path: src/evaluate.py
       hash: md5
-      md5: b3899755a3d91002780afbf59a68cd0b
-      size: 941
+      md5: 9e40bf6fbd39dd0e8a2fb013d397455b
+      size: 1261
     outs:
     - path: metrics.json
       hash: md5
-      md5: 5f66785ce1b0aa26f20843831f38fae2
-      size: 57
+      md5: d73b9d12f3b99428eb9d3d326bd535b0
+      size: 58
+  hpo:
+    cmd: python src/hpo.py
+    deps:
+    - path: data/raw/data.csv
+      hash: md5
+      md5: 157d23b7c53167859abb1b43afe5861e
+      size: 55967
+    - path: src/hpo.py
+      hash: md5
+      md5: 991edf9d2476a976b90f9354ae23a6a9
+      size: 3025
+    params:
+      params.yaml:
+        alpha: 0.001
+        data_size: 1500
+        degree: 2
+        epochs: 30
+        hidden: 50
+        lr: 0.0001
+        seed: 43
+    outs:
+    - path: best_params.yaml
+      hash: md5
+      md5: 48d47195ab62457a8c235cdfb0140e33
+      size: 112

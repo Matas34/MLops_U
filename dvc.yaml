@@ -7,13 +7,22 @@ stages:
       - params.yaml:
     outs:
       - data/raw/data.csv
+  hpo:
+    cmd: python src/hpo.py
+    deps: 
+      - src/hpo.py
+      - data/raw/data.csv
+    params: 
+      - params.yaml:
+    outs: 
+      - best_params.yaml
   train:
     cmd: python src/train.py
     deps:
       - src/train.py
       - data/raw/data.csv
     params:
-      - params.yaml:
+      - best_params.yaml:
     outs:
       - models/model.pkl
       - models/run_id.txt:

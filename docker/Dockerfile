@@ -7,12 +7,18 @@ RUN pip install --no-cache-dir \
     "mlflow==3.17.1" \
     "numpy==2.5.4" \
     "pandas==3.0.6" \
-    "pyyaml==6.0.3"
+    "pyyaml==6.0.3" \
+    "scikit-learn==1.9.1" \
+    "skops==0.16.0" \
+    "psutil==7.2.2"\
+    "optuna==5.0.0"
 
-COPY src/prepare.py src/train.py /app/src/
-COPY params.yaml /app/params.yaml
+COPY src/ /app/src/
 
 # dont store compiled bytecode (pycache)
 ENV PYTHONDONTWRITEBYTECODE=1
 
-CMD ["sh", "-c", "python src/prepare.py && python src/train.py"]
+ARG GIT_COMMIT=""
+ENV GIT_COMMIT=$GIT_COMMIT
+
+CMD ["sh", "-c", "python src/prepare.py && python src/hpo.py && python src/train.py && python src/evaluate.py"]

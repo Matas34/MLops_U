@@ -8,9 +8,16 @@ with open("models/run_id.txt") as f:
 
 run = mlflow.MlflowClient().get_run(run_id)
 
-params = {k: int(v) for k, v in run.data.params.items()}
+def parse_param(v):
+    try:
+        return float(v) if '.' in v else int(v)
+    except ValueError:
+        return v
 
-with open("params.yaml", "w") as f:
+params = {k: parse_param(v) for k, v in run.data.params.items()}
+
+with open("best_params.yaml", "w") as f:
     yaml.dump(params, f, sort_keys=False)
 
-subprocess.run(["dvc", "repro", "--force"], check=True)
+subprocess.run(["python", "src/train.py"], check=True)
+subprocess.run(["python", "src/evaluate.py"], check=True)

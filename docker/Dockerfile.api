@@ -1,0 +1,15 @@
+FROM python:3.14-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir \
+    "fastapi==0.115.0" \
+    "uvicorn==0.30.6" \
+    "mlflow==3.17.1" \
+    "pandas==3.0.6" \
+    "scikit-learn==1.9.1" \
+    "skops==0.16.0"
+
+COPY /api/app.py /app/app.py
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

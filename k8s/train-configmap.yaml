@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: train-config
+  namespace: mlops
+data:
+  DEGREE: "2"
+  DATA_SIZE: "1500"
+  SEED: "43"
+  HIDDEN: "50"
+  LR: "0.0001"
+  ALPHA: "0.001"
+  EPOCHS: "30"
+  MLFLOW_TRACKING_URI: "http://mlflow.mlops.svc.cluster.local:5000"

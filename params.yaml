@@ -1,3 +1,7 @@
-degree: 4
-data_size: 50
+degree: 2
+data_size: 1500
 seed: 43
+hidden: 50
+lr: 0.0001
+alpha: 0.001
+epochs: 30

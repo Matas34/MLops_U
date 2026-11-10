@@ -25,3 +25,11 @@ Reprodukuojamas polinominės regresijos MLOps pipeline.
 | NFR-03 | Našumas | Visas pipeline'as (prepare + train + evaluate) | Vykdymas < 15 s |
 | NFR-04 | Docker dydis | Image dydis | < 700 MB |
 | NFR-05 | Duomenų išsaugojimas | Run'ai išlieka po Pod restart | 100% run'ų išlieka |
+
+# 4. Inferencijos API (NFR)
+
+| ID | Kategorija | Reikalavimas | KPI |
+|----|------------|--------------|-------------------------|
+| NFR-06 | Inferencijos vėlinimas (p95) | 95-ojo procentilio atsakymo laikas neturi viršyti 100 ms. | **~42.94 ms** |
+| NFR-07 | Pralaidumas (Throughput) | API turi apdoroti bent 20 užklausų per sekundę. | **~360 req/sec** |
+| NFR-08 | Modelio dydis | Modelio failo dydis neturi viršyti 50 MB. | **76 KB** |
