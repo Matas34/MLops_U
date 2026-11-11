@@ -1,7 +1,7 @@
 import mlflow
-from mlflow import MlflowClient
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from mlflow import MlflowClient
 from pydantic import BaseModel
 
 MODEL_NAME = "poly_model"
@@ -28,10 +28,7 @@ def model_version():
 
 @app.post("/predict")
 def predict(request: PredictRequest):
-    try:
-        df = pd.DataFrame([{"x": request.x}])
-        prediction = model.predict(df)
-        
-        return {"prediction": float(prediction[0])}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    df = pd.DataFrame([{"x": request.x}])
+    prediction = model.predict(df)
+    
+    return {"prediction": float(prediction[0])}

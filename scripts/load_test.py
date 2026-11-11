@@ -1,7 +1,8 @@
 import time
-import requests
-import numpy as np
 from concurrent.futures import ThreadPoolExecutor
+
+import numpy as np
+import requests
 
 URL = "http://localhost:8080/predict"
 PAYLOAD = {"x": 5.0}
