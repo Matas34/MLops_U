@@ -1,13 +1,15 @@
 import mlflow
+from mlflow import MlflowClient
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-# 1. Load the model at startup
-# Make sure MLFLOW_TRACKING_URI is set in the environment
+MODEL_NAME = "poly_model"
+MODEL_ALIAS = "champion"
+MODEL_URI = f"models:/{MODEL_NAME}@{MODEL_ALIAS}"
 
-MODEL_URI = "models:/poly_model@champion"
 model = mlflow.pyfunc.load_model(MODEL_URI)
+version = MlflowClient().get_model_version_by_alias(MODEL_NAME, MODEL_ALIAS).version
 
 app = FastAPI(title="Polynomial Regression API")
 
@@ -17,6 +19,12 @@ class PredictRequest(BaseModel):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/model-version")
+def model_version():
+    return {
+        "version": version
+    }
 
 @app.post("/predict")
 def predict(request: PredictRequest):

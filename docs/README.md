@@ -169,7 +169,7 @@ Throughput: 344.68 requests/sec
 
 ---
 
-## CI/CD & Rollback
+## CI/CD
 
 The repository uses **GitHub Actions** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) to automate the pipeline:
 
