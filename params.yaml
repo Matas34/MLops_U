@@ -4,4 +4,4 @@ seed: 43
 hidden: 50
 lr: 0.0001
 alpha: 0.001
-epochs: 30
+epochs: 5

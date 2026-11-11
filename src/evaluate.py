@@ -27,7 +27,7 @@ metrics = {
     "R2": r2
 }
 
-threshold = 0.9
+threshold = 0.999
 gate_passed = check_quality_gate(r2, threshold)
 
 with open("models/run_id.txt", "r") as f:

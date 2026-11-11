@@ -42,7 +42,7 @@ with mlflow.start_run(run_name="hpo", log_system_metrics=True) as run:
              "hidden": trial.suggest_int("hidden", 4, 128),
              "lr": trial.suggest_float("lr", 1e-4, 1e-2, log=True),
              "alpha": trial.suggest_float("alpha", 1e-6, 1e-1, log=True),
-             "epochs": trial.suggest_int("epochs", 5, 100)}
+             "epochs": trial.suggest_int("epochs", 3, 6)}
         
         with mlflow.start_run(run_name=f"trial-{trial.number}", nested=True):
             model = MLPRegressor(
