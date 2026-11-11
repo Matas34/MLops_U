@@ -30,6 +30,6 @@ Reprodukuojamas polinominės regresijos MLOps pipeline.
 
 | ID | Kategorija | Reikalavimas | KPI |
 |----|------------|--------------|-------------------------|
-| NFR-06 | Inferencijos vėlinimas (p95) | 95-ojo procentilio atsakymo laikas neturi viršyti 100 ms. | **~42.94 ms** |
+| NFR-06 | Inferencijos vėlinimas (p95) | 95-ojo procentilio atsakymo laikas neturi viršyti 100 ms. | **~42 ms** |
 | NFR-07 | Pralaidumas (Throughput) | API turi apdoroti bent 20 užklausų per sekundę. | **~360 req/sec** |
 | NFR-08 | Modelio dydis | Modelio failo dydis neturi viršyti 50 MB. | **76 KB** |
